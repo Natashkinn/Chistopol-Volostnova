@@ -13,10 +13,11 @@ class Example(QWidget):
         self.initUI()
 
     def initUI(self):
+        self.a, self.b, self.c = choice(range(255)), choice(range(255)), choice(range(255))
         self.setGeometry(300, 300, 500, 500)
         self.setWindowTitle('Рисование')
         self.btn = QPushButton('Рисовать', self)
-        self.btn.move(70, 150)
+        self.btn.move(200, 400)
         self.do_paint = False
         self.btn.clicked.connect(self.paint)
 
@@ -25,16 +26,20 @@ class Example(QWidget):
             qp = QPainter()
             qp.begin(self)
             self.draw_flag(qp)
+
             qp.end()
 
     def paint(self):
         self.do_paint = True
+        self.a, self.b, self.c = choice(range(255)), choice(range(255)), choice(range(255))
+        self.btn.setStyleSheet(
+            f'background: rgb({self.a}, {self.b}, {self.c})')
         self.repaint()
 
     def draw_flag(self, qp):
         r = choice(range(100))
         x, y = choice(range(400)), choice(range(400))
-        qp.setBrush(QColor(choice(range(255)), choice(range(255)), choice(range(255))))
+        qp.setBrush(QColor(self.a, self.b, self.c))
         qp.drawEllipse(x, y, r, r)
 
 
