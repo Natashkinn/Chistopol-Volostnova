@@ -34,7 +34,7 @@ class Example(QWidget):
     def draw_flag(self, qp):
         r = choice(range(100))
         x, y = choice(range(400)), choice(range(400))
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(choice(range(255)), choice(range(255)), choice(range(255))))
         qp.drawEllipse(x, y, r, r)
 
 
